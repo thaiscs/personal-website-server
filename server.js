@@ -27,7 +27,7 @@ contactEmail.verify((error) => {
 });
 
 router.get("/", (req, res) => {
-  res.send({ server: "Server is running!", user, pass });
+  res.send("Server is running!");
 });
 
 router.post("/contact", (req, res) => {
@@ -46,7 +46,7 @@ router.post("/contact", (req, res) => {
   };
   contactEmail.sendMail(mail, (error) => {
     if (error) {
-      res.json(error);
+      res.json({ code: 502, error });
     } else {
       res.json({ code: 200, status: "Message Sent" });
     }
