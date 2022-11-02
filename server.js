@@ -3,7 +3,6 @@ const router = express.Router();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const { user, pass } = require("./config.js");
-console.log("auth", user, pass);
 // server used to send send emails
 const app = express();
 app.use(cors());
@@ -28,7 +27,7 @@ contactEmail.verify((error) => {
 });
 
 router.get("/", (req, res) => {
-  res.send("Server is running!");
+  res.send({ server: "Server is running!", user, pass });
 });
 
 router.post("/contact", (req, res) => {
